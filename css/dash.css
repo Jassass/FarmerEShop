@@ -1,0 +1,19 @@
+@charset "ISO-8859-1";
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.main{
+	margin-top: 2%;
+}
+.cardTile{
+	margin-right: 8%;
+}
+.radioInline{
+	display:flex;
+	margin-bottom: 20px;
+}
+.radioInline font{
+	padding: 7px;
+	color: green;
+}
+.radioP{
+	margin-right: 5%;
+}

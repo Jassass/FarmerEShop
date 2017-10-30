@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Insert title here</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="css/dash.css">
+</head>
+<body>
+
+	<!-- Main Header -->
+	<nav>
+	    <div class="nav-wrapper light-green accent-3">
+	      <a href="#!" class="brand-logo center">Farmers E-Shop</a>
+	    </div>
+  	</nav>
+
+	<div class="row">
+		<!-- Side Navbar -->
+		<div class="col s3">
+			<ul id="slide-out" class="side-nav fixed">
+				<li><div class="light-green accent-3 user-view">
+				  <i class="material-icons md-light large">account_circle</i>
+			      <a href="#!name"><span class="name">John Doe</span></a>
+			      <a href="#!email"><span class="email">jdandturk@gmail.com</span></a>
+			    </div></li>
+			    <li><a class="waves-effect" href="/FarmerEShop/dash.html">Profile</a></li>
+			    <li><a class="waves-effect" href="/FarmerEShop/addItem.html">Add Item</a></li>
+			    <li class="active"><a class="waves-effect" href="/FarmerEShop/cart.html">Add to Cart</a></li>
+			    <li><a class="waves-effect" href="#!"><span class="new badge">14</span>Notification</a></li>
+			    <li><a class="waves-effect" href="#!">Logout</a></li>
+		  	</ul>
+	  	</div>
+	  	
+	  	<!-- Main body -->
+	  	<div class="col s9 main">
+		  	
+		  	<form>
+		  		<div class="row">
+			        <div class="input-field col s2 offset-s4">
+			          <input id="search" type="text" name="searchQuery">
+			          <label for="search">Search</label>
+			        </div>
+			        <div class="input-field col s3">
+			        	<button class="btn-floating waves-effect waves-light" type="submit" name="action">
+    						<i class="material-icons right">search</i>
+  						</button>
+			        </div>
+			     </div>
+		  	</form>
+	  		
+	  		<!-- cards -->
+	  		<div class="row">
+			    <div class="col s12 m3 cardTile">
+			      <div class="card">
+			        <div class="card-image">
+			          <img src="images/sample-1.jpg">
+			          <span class="card-title">Card Title</span>
+			          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+			        </div>
+			        <div class="card-content">
+			          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+			        </div>
+			        <div class="card-action">
+		              <a href="#">More info</a>
+		            </div>
+			      </div>
+			    </div>
+			    <div class="col s12 m3 cardTile">
+			      <div class="card">
+			        <div class="card-image">
+			          <img src="images/sample-1.jpg">
+			          <span class="card-title">Card Title</span>
+			          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+			        </div>
+			        <div class="card-content">
+			          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+			        </div>
+			        <div class="card-action">
+		              <a href="#">More info</a>
+		            </div>
+			      </div>
+			    </div>
+			    <div class="col s12 m3 cardTile">
+			      <div class="card">
+			        <div class="card-image">
+			          <img src="images/sample-1.jpg">
+			          <span class="card-title">Card Title</span>
+			          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+			        </div>
+			        <div class="card-content">
+			          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+			        </div>
+			        <div class="card-action">
+		              <a href="#">More info</a>
+		            </div>
+			      </div>
+			    </div>
+		  	</div>
+	  		
+	  
+	  	</div>
+  	
+	</div>
+  	
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+</html>
