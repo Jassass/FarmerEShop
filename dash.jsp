@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<sql:setDataSource scope="application" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/farmereshop" user="root" password="" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,13 +12,11 @@
 </head>
 <body>
 
-	<jsp:useBean id="user" class="a.UserBean" scope="session">
-	</jsp:useBean>
+	<c:set var="contactNumber" value="${param.contactNumber}" />
 
-	<sql:setDataSource scope="application" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/farmereshop" user="root" password="" />
 	<sql:query var="userInfo">
 		Select * from users where contactNumber = ?
-		<sql:param value="${user.contactNumber}" />
+		<sql:param value="${contactNumber}" />
 	</sql:query>
 
 	<!-- Main Header -->
