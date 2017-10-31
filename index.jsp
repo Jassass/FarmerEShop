@@ -11,7 +11,9 @@
 		<jsp:setProperty name="user" property="contactNumber" value="${param.contactNumber}" />
 		<jsp:setProperty name="user" property="password" value="${param.password}"/>
 		<c:if test="${user.verifyUser() == 'true'}">
-			<jsp:forward page="dash.jsp"></jsp:forward>
+			<jsp:forward page="dash.jsp">
+				<jsp:param name="contactNumber" value="${user.contactNumber}" />
+			</jsp:forward>
 	    </c:if>
 	</jsp:useBean>
 </c:when>
