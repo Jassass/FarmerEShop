@@ -1,41 +1,11 @@
+<%@include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1" name="viewport"
-	content="width=device-width, initial-scale=1.0">
+<meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Add Item</title>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/materialize.min.css">
-<link rel="stylesheet" type="text/css" href="css/dash.css">
 </head>
 <body>
-
-	<!-- Main Header -->
-	<nav>
-		<div class="nav-wrapper light-green accent-3">
-			<a href="#!" class="brand-logo center">Farmers E-Shop</a>
-		</div>
-	</nav>
-
-	<div class="row">
-		<!-- Side Navbar -->
-		<div class="col s3">
-			<ul id="slide-out" class="side-nav fixed">
-				<li><div class="light-green accent-3 user-view">
-						<i class="material-icons md-light large">account_circle</i> <a
-							href="#!name"><span class="name">John Doe</span></a> <a
-							href="#!email"><span class="email">jdandturk@gmail.com</span></a>
-					</div></li>
-				<li><a class="waves-effect" href="/FarmerEShop/dash.html">Profile</a></li>
-				<li class="active"><a class="waves-effect" href="/FarmerEShop/addItem.html">Add
-						Item</a></li>
-				<li><a class="waves-effect" href="/FarmerEShop/cart.html">Add to Cart</a></li>
-				<li><a class="waves-effect" href="#!"><span
-						class="new badge">13</span>Notification</a></li>
-				<li><a class="waves-effect" href="#!">Logout</a></li>
-			</ul>
-		</div>
 
 		<!-- Main body -->
 		<div class="col s9 main">
@@ -110,8 +80,4 @@
 	</div>
 
 </body>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
 </html>

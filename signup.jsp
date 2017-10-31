@@ -1,17 +1,31 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Sign-up</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+<style>
+*{
+	box-sizing: border-box;
+}
+#toast-container {
+  top: auto !important;
+  right: auto !important;
+  bottom: 10%;
+  left:42%;  
+}
+</style>
 </head>
 <body>
 	<h2 style="text-align: center; color: #12ef0e;">A Farmer's E-Shop</h2>
 	<hr />
 	<div class="row">
 		<div class="col s8 offset-s2" style="color: #12ef0e;">
-			<form action="index.jsp" method="post">
+			<form action="signup.jsp" method="post">
 				<fieldset>
 					<legend style="font-size: 25px;">Sign Up</legend>
 					<div class="row">
@@ -88,9 +102,24 @@
 			</form>
 		</div>
 	</div>
-</body>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
 
+<c:if test="${param.signUp}">
+	<jsp:useBean id="signUpUser" class="a.UserBean">
+		<jsp:setProperty name="signUpUser" property="*" />
+		<c:set var="error" value="${signUpUser.registerUser()}" />
+		<c:choose>
+			<c:when test="${error == ''}">
+				<jsp:forward page="index.jsp">
+					<jsp:param name="contactNumber" value="${signUpUser.contactNumber}" />
+				</jsp:forward>
+			</c:when>
+			<c:otherwise>
+				<script type="text/javascript">
+					Materialize.toast('Error SigingUp... Try Again', 1000)
+				</script>
+			</c:otherwise>
+		</c:choose>
+	</jsp:useBean>
+</c:if>
+</body>
 </html>

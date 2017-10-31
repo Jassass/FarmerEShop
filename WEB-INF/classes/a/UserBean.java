@@ -90,10 +90,13 @@ public class UserBean implements Serializable {
 
 	public String registerUser() {
 
-	
 		String error = "";
 		Connection conn = null;
 		Statement stmt = null;
+
+		if(this.contactNumber == null|| this.password == null|| this.fName == null|| this.lName == null|| this.location == null|| this.city == null|| this.state == null|| this.type == null){
+			return "Invalid Input";
+		}
 
 		try {
 			Class.forName(this.JDBC_DRIVER);

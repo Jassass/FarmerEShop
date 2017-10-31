@@ -1,30 +1,26 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:choose>
-<c:when test="${param.signUp}">
-	<jsp:useBean id="signUpUser" class="a.UserBean">
-		<jsp:setProperty name="signUpUser" property="*" />
-		<c:out value="${signUpUser.registerUser()}" />
-	</jsp:useBean>
-</c:when>
-<c:when test="${param.login}">
-	<jsp:useBean id="user" class="a.UserBean">
-		<jsp:setProperty name="user" property="contactNumber" value="${param.contactNumber}" />
-		<jsp:setProperty name="user" property="password" value="${param.password}"/>
-		<c:if test="${user.verifyUser() == 'true'}">
-			<jsp:forward page="dash.jsp">
-				<jsp:param name="contactNumber" value="${user.contactNumber}" />
-			</jsp:forward>
-	    </c:if>
-	</jsp:useBean>
-</c:when>
-</c:choose>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Login home</title>
+
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+<style>
+	*{
+		box-sizing: border-box;
+	}
+	#toast-container {
+	  top: auto !important;
+	  right: auto !important;
+	  bottom: 10%;
+	  left:38%;  
+	}
+</style>
 </head>
 <body>
 <h2 style="text-align:center; color:#12ef0e;">A Farmer's E-Shop</h2>
@@ -38,8 +34,8 @@
 				<legend style="font-size:25px; font-weight:bold">LOGIN</legend>
 					<div class="input-field col s12">
 						<i class="material-icons prefix">phone</i> <input name="contactNumber" id="contact"
-							type="number" class="validate"> <label for="contact">Contact
-							Number</label>
+							type="number" class="validate" value='<c:out value="${param.contactNumber}" />'> 
+							<label for="contact">Contact Number</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="material-icons prefix">check</i> <input name="password" id="password"
@@ -61,13 +57,35 @@
 					
 				</fieldset>
 			</form>
-	
 	</div>
 </div>
+<c:choose>
+	<c:when test="${param.login}">
+		<jsp:useBean id="user" class="a.UserBean">
+			<jsp:setProperty name="user" property="contactNumber" value="${param.contactNumber}" />
+			<jsp:setProperty name="user" property="password" value="${param.password}"/>
+			<c:choose>
+				<c:when test="${user.verifyUser() == 'true'}">
+					<jsp:forward page="dash.jsp">
+						<jsp:param name="contactNumber" value="${user.contactNumber}" />
+					</jsp:forward>
+			    </c:when>
+			    <c:otherwise>
+					<script type="text/javascript">
+						Materialize.toast('Invalid Number or Password... Try Again', 2000)
+					</script>	    	
+				</c:otherwise>
+			</c:choose>
+		</jsp:useBean>
+	</c:when>
+	<c:otherwise>
+		<c:if test="${param.contactNumber != null}">
+			<script type="text/javascript">
+				Materialize.toast('Successfully Registered!', 2000)
+			</script>
+		</c:if>
+	</c:otherwise>
+</c:choose>
 
 </body>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
-
 </html>
