@@ -11,23 +11,27 @@
 	  	<div class="col s9 main">
 		  	
 		  	<form>
-		  		<div class="row">
-			        <div class="input-field col s2 offset-s4">
-			          <input id="search" type="text" name="searchQuery">
-			          <label for="search">Search</label>
-			        </div>
-			        <div class="input-field col s3">
-			        	<button class="btn-floating waves-effect waves-light" type="submit" name="action">
-    						<i class="material-icons right">search</i>
-  						</button>
-			        </div>
-			     </div>
-		  	</form>
+		  	<div class="row">
+		        <div class="input-field col s2 offset-s4">
+		          <input type="text" name="searchQuery">
+		          <label for="searchQuery">Search</label>
+		        </div>
+		        <div class="input-field col s3">
+		        	<button class="btn-floating waves-effect waves-light" type="submit" name="search" value="true">
+						<i class="material-icons right">search</i>
+					</button>
+		        </div>
+			</div>
+			</form>
 	  		
+	  			<c:if test="${param.search}">
+	  				<c:set var="likeParam" value="${param.searchQuery}" />
+	  			</c:if>
 			  <!--database-->
 				<sql:query var="items">
-					SELECT Name, Description FROM items
+					SELECT Name, Description FROM items where name like '%${likeParam}%'
 				</sql:query>
+			<div id="cards">
 	  		<!-- cards -->
 
 				<c:forEach items="${items.rows}" var="item">
@@ -51,7 +55,7 @@
 						</div>   
 					</div>
 				</c:forEach>
-	  
+	  		</div>
 	  	</div>
   	
 	</div>
