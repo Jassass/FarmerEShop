@@ -23,6 +23,11 @@
 		<sql:param value="${contactNumber}" />
 	</sql:query>
 
+
+	 <sql:query var="items">
+					SELECT count(*) as number_of_notifications FROM notifications where notificationTo=${contactNumber} and status='0'  
+				</sql:query>
+
 	<form method="post" id="forwardForm">
 		<input type="hidden" name="contactNumber" value="${contactNumber}">
 	</form>
@@ -45,7 +50,7 @@
 			    <li id="dash" onclick="forward(this.id)"><a class="waves-effect">Profile</a></li>
 			    <li id="addItem" onclick="forward(this.id)"><a class="waves-effect">Add Item</a></li>
 			    <li id="cart" onclick="forward(this.id)"><a class="waves-effect">Add to Cart</a></li>
-			    <li id="notifications" onclick=""><a class="waves-effect"><span class="new badge">14</span>Notification</a></li>
+			    <li id="notifications" onclick="forward(this.id)"><a class="waves-effect"><span class="new badge">${items.rows[0].number_of_notifications}</span>Notification</a></li>
 			    <li><a class="waves-effect" href="logout.jsp">Logout</a></li>
 		  	</ul>
 	  	</div>

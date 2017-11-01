@@ -1,3 +1,4 @@
+
 <%@include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -8,6 +9,7 @@
 <body>
 
 		<!-- Main body -->
+
 	  	<div class="col s8 main">
 	  		<table class="bordered centered responsive-table" style="margin-top: 10%;">
 	          <c:forEach items="${userInfo.rows[0]}" var = "column">
