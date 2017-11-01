@@ -1,8 +1,3 @@
-function forward(id) {
-	$('#forwardForm').attr('action',id+'.jsp');
-	$('#forwardForm').submit();
-}
-
 $('.datepicker').pickadate({
     format: 'yyyy-mm-dd',
     selectMonths: true, // Creates a dropdown to control month

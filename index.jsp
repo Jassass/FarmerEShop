@@ -1,4 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${contactNumber != ''}">
+	<jsp:forward page="dash.jsp"></jsp:forward>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,9 +69,8 @@
 			<jsp:setProperty name="user" property="password" value="${param.password}"/>
 			<c:choose>
 				<c:when test="${user.verifyUser() == 'true'}">
-					<jsp:forward page="dash.jsp">
-						<jsp:param name="contactNumber" value="${user.contactNumber}" />
-					</jsp:forward>
+					<c:set var="contactNumber" value="${user.contactNumber}" scope="session"/>
+					<jsp:forward page="dash.jsp"></jsp:forward>
 			    </c:when>
 			    <c:otherwise>
 					<script type="text/javascript">

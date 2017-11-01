@@ -2,10 +2,10 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <sql:setDataSource scope="application" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/farmereshop" user="root" password="" />
-<c:set var="contactNumber" value="${param.contactNumber}" />
-<c:if test="${contactNumber == null}">
+<c:if test="${contactNumber == ''}">
 	<jsp:forward page="index.jsp"></jsp:forward>
 </c:if>
+<c:set var="contactNumber" value="${contactNumber}" scope = "session" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,16 +44,22 @@
 			<ul id="slide-out" class="side-nav fixed">
 				<li><div class="light-green accent-3 user-view">
 				  <i class="material-icons md-light large">account_circle</i>
-			      <a href="#!name"><span class="name"><c:out value="${userInfo.rows[0].fName }" /> <c:out value="${userInfo.rows[0].lName }" /></span></a>
-			      <a href="#!email"><span class="number"><c:out value="${userInfo.rows[0].contactNumber }" /></span></a>
+			      <a href="#!name"><span class="name">${userInfo.rows[0].fName} ${userInfo.rows[0].lName}</span></a>
+			      <a href="#!number"><span class="number">${userInfo.rows[0].contactNumber}</span></a>
 			    </div></li>
-			    <li id="dash" onclick="forward(this.id)"><a class="waves-effect">Profile</a></li>
-			    <li id="addItem" onclick="forward(this.id)"><a class="waves-effect">Add Item</a></li>
-			    <li id="cart" onclick="forward(this.id)"><a class="waves-effect">Add to Cart</a></li>
-			    <li id="notifications" onclick="forward(this.id)"><a class="waves-effect"><span class="new badge">${items.rows[0].number_of_notifications}</span>Notification</a></li>
+			    <li id="dash"><a href="dash.jsp" class="waves-effect">Profile</a></li>
+			    <c:choose>
+			    	<c:when test="${userInfo.rows[0].type == 'farmer'}">
+			    		<li id="addItem"><a href="addItem.jsp" class="waves-effect">Add Item</a></li>
+			    	</c:when>
+					<c:otherwise>
+						<li id="cart"><a href="cart.jsp" class="waves-effect">Add to Cart</a></li>
+					</c:otherwise>
+				</c:choose>
+			    
+			    <li id="notifications"><a class="waves-effect"><span class="new badge">14</span>Notification</a></li>
 			    <li><a class="waves-effect" href="logout.jsp">Logout</a></li>
 		  	</ul>
 	  	</div>
-
 </body>
 </html>
