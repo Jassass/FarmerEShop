@@ -57,7 +57,7 @@
 					</c:otherwise>
 				</c:choose>
 			    
-			    <li id="notifications"><a class="waves-effect"><span class="new badge">14</span>Notification</a></li>
+			    <li id="notifications"><a href="notifications.jsp" class="waves-effect"><span class="new badge">${item.rows[0].number_of_notifications}</span>Notification</a></li>
 			    <li><a class="waves-effect" href="logout.jsp">Logout</a></li>
 		  	</ul>
 	  	</div>
