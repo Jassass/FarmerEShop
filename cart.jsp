@@ -5,6 +5,18 @@
 	<meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Insert title here</title>
 </head>
+<style>
+	*{
+		box-sizing: border-box;
+	}
+	body{
+		background-image: url("images/backdrop.jpg");
+		background-size: cover;
+		background-repeat: no-repeat;
+	    background-attachment: fixed;
+	    background-position: center; 
+	}
+</style>
 <body>
 
 		<!-- Main body -->

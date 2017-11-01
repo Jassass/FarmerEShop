@@ -17,6 +17,13 @@
 	*{
 		box-sizing: border-box;
 	}
+	body{
+		background-image: url("images/backdrop.jpg");
+		background-size: cover;
+		background-repeat: no-repeat;
+	    background-attachment: fixed;
+	    background-position: center; 
+	}
 	#toast-container {
 	  top: auto !important;
 	  right: auto !important;
@@ -88,6 +95,5 @@
 		</c:if>
 	</c:otherwise>
 </c:choose>
-
 </body>
 </html>

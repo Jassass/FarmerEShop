@@ -9,6 +9,18 @@ $(document).ready(function() {
     $('select').material_select();
 });
 </script>
+<style>
+    *{
+        box-sizing: border-box;
+    }
+    body{
+        background-image: url("images/backdrop.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center; 
+    }
+</style>
     </head>
 
     <body>

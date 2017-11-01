@@ -5,7 +5,6 @@
 <c:if test="${contactNumber == ''}">
 	<jsp:forward page="index.jsp"></jsp:forward>
 </c:if>
-<c:set var="contactNumber" value="${contactNumber}" scope = "session" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,9 +23,10 @@
 	</sql:query>
 
 
-	 <sql:query var="items">
-					SELECT count(*) as number_of_notifications FROM notifications where notificationTo=${contactNumber} and status='0'  
-				</sql:query>
+	<sql:query var="items">
+		SELECT count(*) as number_of_notifications FROM notifications where notificationTo=? and status='0'
+		<sql:param value="{$contactNumber}" />  
+	</sql:query>
 
 	<form method="post" id="forwardForm">
 		<input type="hidden" name="contactNumber" value="${contactNumber}">

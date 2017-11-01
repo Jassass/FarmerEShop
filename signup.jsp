@@ -12,6 +12,13 @@
 *{
 	box-sizing: border-box;
 }
+body{
+	background-image: url("images/sign.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+}
 #toast-container {
   top: auto !important;
   right: auto !important;
