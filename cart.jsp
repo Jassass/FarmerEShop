@@ -24,59 +24,38 @@
 			     </div>
 		  	</form>
 	  		
+			  <!--database-->
+				<sql:query var="items">
+					SELECT Name, Description FROM items
+				</sql:query>
 	  		<!-- cards -->
-	  		<div class="row">
-			    <div class="col s12 m3 cardTile">
-			      <div class="card">
-			        <div class="card-image">
-			          <img src="images/sample-1.jpg">
-			          <span class="card-title">Card Title</span>
-			          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-			        </div>
-			        <div class="card-content">
-			          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-			        </div>
-			        <div class="card-action">
-		              <a href="#">More info</a>
-		            </div>
-			      </div>
-			    </div>
-			    <div class="col s12 m3 cardTile">
-			      <div class="card">
-			        <div class="card-image">
-			          <img src="images/sample-1.jpg">
-			          <span class="card-title">Card Title</span>
-			          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-			        </div>
-			        <div class="card-content">
-			          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-			        </div>
-			        <div class="card-action">
-		              <a href="#">More info</a>
-		            </div>
-			      </div>
-			    </div>
-			    <div class="col s12 m3 cardTile">
-			      <div class="card">
-			        <div class="card-image">
-			          <img src="images/sample-1.jpg">
-			          <span class="card-title">Card Title</span>
-			          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-			        </div>
-			        <div class="card-content">
-			          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-			        </div>
-			        <div class="card-action">
-		              <a href="#">More info</a>
-		            </div>
-			      </div>
-			    </div>
-		  	</div>
-	  		
+
+				<c:forEach items="${items.rows}" var="item">
+								
+					<div class="row col m11">
+						
+						<div class="card horizontal">
+							<div class="card-image">
+								<img src="images/sample-1.jpg">
+								<span class="card-title"><strong>${item.name}</strong></span>
+								<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+							</div>
+							<div class="card-stacked">
+								<div class="card-content">
+										${item.description}			
+								</div>
+								<div class="card-action">
+									<a href="#">More Info</a>
+								</div>
+							</div>
+						</div>   
+					</div>
+				</c:forEach>
 	  
 	  	</div>
   	
 	</div>
   	
 </body>
+<script type="text/javascript" src="js/script.js"></script>
 </html>

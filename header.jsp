@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <sql:setDataSource scope="application" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/farmereshop" user="root" password="" />
 <c:set var="contactNumber" value="${param.contactNumber}" />
 <c:if test="${contactNumber == null}">
@@ -50,5 +51,4 @@
 	  	</div>
 
 </body>
-<script type="text/javascript" src="js/script.js"></script>
 </html>

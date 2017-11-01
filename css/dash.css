@@ -1,4 +1,7 @@
 @charset "ISO-8859-1";
+*{
+	box-sizing: border-box;
+}
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 .main{
 	margin-top: 2%;
@@ -16,4 +19,7 @@
 }
 .radioP{
 	margin-right: 5%;
+}
+.card-title{
+	padding-left: 20px;
 }

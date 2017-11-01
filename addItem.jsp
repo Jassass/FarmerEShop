@@ -2,19 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Add Item</title>
 </head>
 <body>
 
 		<!-- Main body -->
 		<div class="col s9 main">
-			<form class="col s12" action="p4.jsp" method="post">
+			<form class="col s12" action="addItem.jsp" method="post">
+				<input type="hidden" name="contactNumber" value="${contactNumber}">
 				<div class="row">
 					<div class="radioInline col s4 offset-s3">
 						<font size="5px">Type:</font>
 						<p class="radioP">
-							<input name="type" type="radio" id="test1" /> <label
+							<input name="type" type="radio" id="test1" checked /> <label
 								for="test1">Wheat</label>
 						</p>
 						<p class="radioP">
@@ -69,7 +68,7 @@
 				<div class="row">
 					<div class="col s3 offset-s4">
 						<button class="btn waves-effect waves-light" type="submit"
-							name="action">
+							name="action" value="true">
 							Submit <i class="material-icons right">send</i>
 						</button>
 					</div>
@@ -79,5 +78,23 @@
 
 	</div>
 
+	<c:if test="${param.action}">
+
+		<sql:update>
+			INSERT INTO 
+			items(Name, Type, Quantity, PersonalRate, MarketRate, Description, ValidUpto, farmer)
+			VALUES(?, ?, ?, ?, ?, ?, ?, ?)
+			<sql:param value="${param.name}" />
+			<sql:param value="${param.type}" />
+			<sql:param value="${param.quantity}" />
+			<sql:param value="${param.rateP}" />
+			<sql:param value="${param.rateM}" />
+			<sql:param value="${param.description}" />
+			<sql:param value="${param.validUpto}" />
+			<sql:param value="${contactNumber}" />
+		</sql:update>
+	</c:if>
+
 </body>
+<script type="text/javascript" src="js/script.js"></script>
 </html>
