@@ -6,3 +6,7 @@
     <sql:param value="${param.sender}" />
     <sql:param value="<%= new java.util.Date() %>" />
 </sql:update>
+<sql:update>
+    Delete from cart${param.sender} where id=?
+    <sql:param value="${param.id}" />
+</sql:update>
