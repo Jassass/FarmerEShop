@@ -18,23 +18,51 @@
   }
 </style>
 <body>
-        <sql:query var="items">
-					SELECT id, Name, Description, itemId, notificationFrom, notificationTo FROM items,notifications where id=itemId and ${contactNumber}= notificationTo  
-				</sql:query>
 
-          <sql:update>
-            UPDATE notifications
-            SET status='1'
-            WHERE ${contactNumber}=notificationTo    
-          </sql:update>
-            
-
-	  		<!-- cards -->
+<sql:update>
+  UPDATE notifications
+  SET status='1'
+  WHERE ${contactNumber}=notificationTo    
+</sql:update>
 
 
+<c:choose>
+<c:when test="${userInfo.rows[0].type == 'farmer'}">
+<sql:query var="buyers">
+  <!-- insert query -->  
+</sql:query>
+
+  <c:forEach items="${buyers.rows}" var="buyer" varStatus="loop">
+				<c:if test="${loop.index % 2 == 1}">
+					<div class="row">
+				</c:if>
+					<div class="col s12 m4 offset-m1">
+					<div class="card blue-grey darken-1">
+						<div class="card-content white-text">
+						<span class="card-title"><b>Card Title</b></span>
+						<ul>
+							<li>${buyer.fname} ${buyer.lname}</li>
+							<li>${buyer.contactNumber}</li>
+						</ul>
+						</div>
+						<div class="card-action white-text">
+							<a onclick="fireNotification(${item.id}, ${contactNumber}, ${item.farmer})">Buy</a>		
+						</div>
+					</div>
+					</div>
+				<c:if test="${loop.index % 2  == 1}">
+					</div>
+				</c:if>
+	</c:forEach>
+</c:when>
+<c:otherwise>
+<sql:query var="items">
+  SELECT id, Name, Description, itemId, notificationFrom, notificationTo FROM items,notifications where id=itemId and ${contactNumber}= notificationTo  
+</sql:query>
+
+<!--card-->
 <div class="col s9">                
 <c:forEach items="${items.rows}" var="item">
-
           <div class="row col m12">
             
             <div class="card horizontal">
@@ -55,6 +83,9 @@
         
         </c:forEach>
         </div>
+</c:otherwise>
+</c:choose>
+
 </body>
 <script type="text/javascript" src="js/script.js"></script>
 </html>

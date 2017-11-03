@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2017 at 09:00 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Generation Time: Nov 03, 2017 at 01:12 PM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `farmer` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `farmer` (`farmer`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `items`
@@ -56,7 +56,9 @@ INSERT INTO `items` (`id`, `Name`, `Type`, `Quantity`, `PersonalRate`, `MarketRa
 (5, 'Potato', 'on', 20, 20, 10, 'I am ssta', '2017-11-28', '9871169186'),
 (6, 'pomegranate', 'on', 4, 120, 80, 'I am swaggy dude.', '2017-11-30', '6000000000'),
 (7, 'Carrot', 'on', 48, 65, 78, 'Hey, I am bloody red.', '2017-11-20', '8000000000'),
-(8, 'tomato', 'on', 18, 68, 53, 'Red shiny.', '2017-11-30', '7000000000');
+(8, 'tomato', 'on', 18, 68, 53, 'Red shiny.', '2017-11-30', '7000000000'),
+(9, 'New item ', 'vegetable', 500, 2000, 1000, 'I am somewhat new', '2017-11-06', '9467918415'),
+(10, 'New item ', 'vegetable', 500, 2000, 1000, 'I am somewhat new', '2017-11-06', '9467918415');
 
 -- --------------------------------------------------------
 
@@ -70,20 +72,18 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `notificationFrom` varchar(10) NOT NULL,
   `date` date NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0',
+  `cartId` int(11) DEFAULT NULL,
   PRIMARY KEY (`itemId`,`notificationTo`,`notificationFrom`),
   KEY `notificationTo` (`notificationTo`),
   KEY `notificationFrom` (`notificationFrom`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `notifications`
 --
 
-INSERT INTO `notifications` (`itemId`, `notificationTo`, `notificationFrom`, `date`, `status`) VALUES
-(3, '9871169186', '9871169186', '2017-11-01', 1),
-(4, '8000000000', '6000000000', '2017-11-02', 1),
-(5, '7000000000', '8000000000', '2017-11-02', 1),
-(6, '8000000000', '7000000000', '2017-11-02', 1);
+INSERT INTO `notifications` (`itemId`, `notificationTo`, `notificationFrom`, `date`, `status`, `cartId`) VALUES
+(6, '6000000000', '1000000000', '2017-11-03', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -108,6 +108,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`contactNumber`, `password`, `fName`, `lName`, `location`, `city`, `state`, `type`) VALUES
+('1000000000', 'Priya', 'Priya', 'Joshi', 'Lajpat Nagar', 'Delhi', 'Delhi', 'market'),
 ('6000000000', 'Vinay', 'Vinay', 'Sharma', 'Karol Bagh', 'Delhi', 'Delhi', 'personal'),
 ('7000000000', 'Gopika', 'Gopika', 'Arora', 'Najafgarh', 'Delhi', 'Delhi', 'personal'),
 ('8000000000', 'Rohit', 'Rohit', 'Singh', 'civil lines', 'Delhi', 'Delhi', 'market'),
