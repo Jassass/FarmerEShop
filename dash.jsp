@@ -1,7 +1,4 @@
 <%@include file="header.jsp"%>
-<sql:update>
-	Create Table if not exists cart${contactNumber}(ID int NOT NULL AUTO_INCREMENT, itemId int , quantity int not null, status int default 0, PRIMARY KEY (ID), FOREIGN KEY (itemId) REFERENCES items(id))
-</sql:update>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +33,7 @@
 	  	</div>
   	
 	</div>
-  	
+
 </body>
 <script type="text/javascript" src="js/script.js"></script>
 </html>

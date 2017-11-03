@@ -8,6 +8,7 @@
     <sql:param value="${param.id}" />
 </sql:update>
 <sql:update>
-    UPDATE cart${param.sender} SET status=1 where id=?
+    UPDATE cart SET status=1 where id=?
     <sql:param value="${param.id}" />
 </sql:update>
+<jsp:forward page="myCart.jsp"></jsp:forward>

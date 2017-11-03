@@ -4,32 +4,32 @@
 <head>
 	<meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Insert title here</title>
-	<script>
-		function fireNotification(itemId, id, sender, receiver){
-			console.log(itemId, id);
-			$.get("addNotification.jsp",
-			{
-				itemId: itemId,
-				id: id,
-				sender: sender,
-				receiver: receiver
-			},
-			function(data, status){
-			});
-		}
-	</script>
+	<style>
+	  *{
+	    box-sizing: border-box;
+	  }
+	  body{
+	    background-image: url("images/backdrop.jpg");
+	    background-size: cover;
+	    background-repeat: no-repeat;
+	    background-attachment: fixed;
+	    background-position: center; 
+	  }
+	</style>
 </head>
 <body>
 
 		<c:choose>
 			<c:when test="${userInfo.rows[0].type == 'market'}">
 				<sql:query var="items">
-					SELECT farmer, Name, MarketRate, Type, ValidUpto, itemId, cart.Quantity, cart.id from items,cart${contactNumber} as cart where status = 0 and itemId = items.id  
+					SELECT farmer, Name, MarketRate, Type, ValidUpto, itemId, cart.Quantity, cart.id from items, cart where cart.user = ? and status = 0 and itemId = items.id  
+					<sql:param value="${contactNumber}" />
 				</sql:query>
 			</c:when>
 			<c:when test="${userInfo.rows[0].type == 'personal'}">
 				<sql:query var="items">
-					SELECT farmer, Name, PersonalRate, Type, ValidUpto, itemId, cart.Quantity, cart.id from items,cart${contactNumber} as cart where status = 0 and itemId = items.id  
+					SELECT farmer, Name, PersonalRate, Type, ValidUpto, itemId, cart.Quantity, cart.id from items, cart where cart.user = ? and status = 0 and itemId = items.id  
+					<sql:param value="${contactNumber}" />
 				</sql:query>
 			</c:when>
 		</c:choose>
@@ -37,20 +37,6 @@
 		<!-- Main body -->
 	  	<div class="col s9 main">
 		  	
-		  	<form>
-		  		<div class="row">
-			        <div class="input-field col s2 offset-s4">
-			          <input id="search" type="text" name="searchQuery">
-			          <label for="search">Search</label>
-			        </div>
-			        <div class="input-field col s3">
-			        	<button class="btn-floating waves-effect waves-light" type="submit" name="action">
-    						<i class="material-icons right">search</i>
-  						</button>
-			        </div>
-			     </div>
-		  	</form>
-	  		
 			<c:forEach items="${items.rows}" var="item" varStatus="loop">
 				<c:if test="${loop.index % 2 == 1}">
 					<div class="row">
@@ -68,7 +54,7 @@
 						</ul>
 						</div>
 						<div class="card-action white-text">
-							<a onclick="fireNotification(${item.itemId}, ${item.id}, ${contactNumber}, ${item.farmer})">Buy</a>
+							<a href="addNotification.jsp?itemId=${item.itemId}&id=${item.id}&sender=${contactNumber}&receiver=${item.farmer}">Buy</a>
 							${item.quantity} Kg
 							<c:choose>
 								<c:when test="${userInfo.rows[0].type == 'market'}">

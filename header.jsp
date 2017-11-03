@@ -16,7 +16,11 @@
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 </head>
 <body>
-
+	<div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,hi'}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	<sql:query var="userInfo">
 		Select * from users where contactNumber = ?
 		<sql:param value="${contactNumber}" />

@@ -19,6 +19,7 @@
 </style>
 <body>
 
+<div class="col s8 main">
 <sql:update>
   UPDATE notifications
   SET status='1'
@@ -28,25 +29,28 @@
 
 <c:choose>
 <c:when test="${userInfo.rows[0].type == 'farmer'}">
-<sql:query var="buyers">
-  <!-- insert query -->  
+<sql:query var="notifications">
+  SELECT notifications.itemId, items.name, users.fname, users.contactNumber, notifications.date, cart.ID, cart.quantity FROM notifications,items,users, cart WHERE notifications.notificationTo=${contactNumber} and notifications.itemId=items.id and users.contactNumber=notifications.notificationFrom and notifications.cartId = cart.ID;
 </sql:query>
 
-  <c:forEach items="${buyers.rows}" var="buyer" varStatus="loop">
+  <c:forEach items="${notifications.rows}" var="notification" varStatus="loop">
 				<c:if test="${loop.index % 2 == 1}">
 					<div class="row">
 				</c:if>
 					<div class="col s12 m4 offset-m1">
 					<div class="card blue-grey darken-1">
 						<div class="card-content white-text">
-						<span class="card-title"><b>Card Title</b></span>
+						<span class="card-title"><b>${notification.name}</b></span>
 						<ul>
-							<li>${buyer.fname} ${buyer.lname}</li>
-							<li>${buyer.contactNumber}</li>
+							<li>${notification.fname} ${notification.lname}</li>
+							<li>${notification.contactNumber}</li>
+              <li>${notification.quantity}</li>
+              <li>${notification.date}</li>
 						</ul>
 						</div>
 						<div class="card-action white-text">
-							<a onclick="fireNotification(${item.id}, ${contactNumber}, ${item.farmer})">Buy</a>		
+							<a href="handleNotification.jsp?status=1&cartId=${notification.id}&itemId=${notification.itemId}&quantity=${notification.quantity}">Accept</a>
+              <a href="handleNotification.jsp?status=1&cartId=${notification.id}">Decline</a>
 						</div>
 					</div>
 					</div>
@@ -85,6 +89,7 @@
         </div>
 </c:otherwise>
 </c:choose>
+</div>
 
 </body>
 <script type="text/javascript" src="js/script.js"></script>

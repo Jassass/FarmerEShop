@@ -24,7 +24,7 @@ $('.modal').modal();
 </script>
 <body>
 
-		<form id="addItemForm" action="add.jsp" method="post">
+		<form id="addItemForm" action="addToCart.jsp" method="post">
 			<div id="addToCart" class="modal">
 				<div class="modal-content">
 					<h4>Enter the Quantity</h4>

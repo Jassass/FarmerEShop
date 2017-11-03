@@ -36,6 +36,11 @@
 <h2 style="text-align:center; color:#12ef0e;">A Farmer's E-Shop</h2>
 <hr/>
 	<div class="row">
+		<div class="col s1 offset-s11">
+			<a href="translate.html" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">g_translate</i></a>
+		</div>
+	</div>
+	<div class="row">
 	<div class="col s3">
 	</div>
 		<div class="input-field col s6">
@@ -95,5 +100,11 @@
 		</c:if>
 	</c:otherwise>
 </c:choose>
+<div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,hi'}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
