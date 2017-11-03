@@ -1,3 +1,15 @@
+var itemId = null;
+function add(id)
+{
+    $('#addToCart').modal('open');
+    itemId = id;
+}
+function addItem(){
+    $('[name="cartItem"]').val(itemId);
+    $('#addItemForm').submit();
+    itemId = null;
+    $('#addToCart').modal('close');
+}
 $('.datepicker').pickadate({
     format: 'yyyy-mm-dd',
     selectMonths: true, // Creates a dropdown to control month

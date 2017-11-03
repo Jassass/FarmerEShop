@@ -65,7 +65,7 @@ INSERT INTO `items` (`id`, `Name`, `Type`, `Quantity`, `PersonalRate`, `MarketRa
 --
 
 CREATE TABLE IF NOT EXISTS `notifications` (
-  `itemId` int(11) NOT NULL AUTO_INCREMENT,
+  `itemId` int(11) NOT NULL,
   `notificationTo` varchar(10) NOT NULL,
   `notificationFrom` varchar(10) NOT NULL,
   `date` date NOT NULL,

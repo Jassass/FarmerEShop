@@ -17,8 +17,26 @@
 	    background-position: center; 
 	}
 </style>
+<script>
+$(document).ready(function(){	
+$('.modal').modal();
+});
+</script>
 <body>
 
+		<form id="addItemForm" action="add.jsp" method="post">
+			<div id="addToCart" class="modal">
+				<div class="modal-content">
+					<h4>Enter the Quantity</h4>
+					<input type="hidden" name="cartItem"/>
+					<input name="quantity" type="number" />
+					</form>
+				</div>
+				<div class="modal-footer">
+				<button class="btn waves-effect waves-light" type="submit" name="addItemButton" value="true" onclick="addItem()">Add to Cart</button>
+				</div>
+			</div>
+		</form>
 		<!-- Main body -->
 	  	<div class="col s9 main">
 		  	
@@ -41,27 +59,27 @@
 	  			</c:if>
 			  <!--database-->
 				<sql:query var="items">
-					SELECT Name, Description FROM items where name like '%${likeParam}%'
+					SELECT id, Name, Description FROM items where name like '%${likeParam}%'
 				</sql:query>
 			<div id="cards">
 	  		<!-- cards -->
 
 				<c:forEach items="${items.rows}" var="item">
-								
+								 
 					<div class="row col m11">
 						
 						<div class="card horizontal">
 							<div class="card-image">
 								<img src="images/sample-1.jpg">
 								<span class="card-title"><strong>${item.name}</strong></span>
-								<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+								<a id="${item.id}" class="btn-floating halfway-fab waves-effect waves-light red" onclick="add(this.id)"><i class="material-icons">add</i></a>
 							</div>
 							<div class="card-stacked">
 								<div class="card-content">
 										${item.description}			
 								</div>
 								<div class="card-action">
-									<a href="#">More Info</a>
+									<a href="prductInfo.jsp?id=${item.id}">More Info</a>
 								</div>
 							</div>
 						</div>   

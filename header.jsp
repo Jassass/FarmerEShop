@@ -25,7 +25,7 @@
 
 	<sql:query var="items">
 		SELECT count(*) as number_of_notifications FROM notifications where notificationTo=? and status='0'
-		<sql:param value="{$contactNumber}" />  
+		<sql:param value="${contactNumber}" />
 	</sql:query>
 
 	<form method="post" id="forwardForm">
@@ -54,6 +54,7 @@
 			    	</c:when>
 					<c:otherwise>
 						<li id="cart"><a href="cart.jsp" class="waves-effect">Add to Cart</a></li>
+						<li id="myCart"><a href="myCart.jsp" class="waves-effect">My Cart</a></li>
 					</c:otherwise>
 				</c:choose>
 			    

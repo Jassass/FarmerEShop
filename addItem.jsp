@@ -31,20 +31,19 @@ $(document).ready(function() {
         <!-- Main body -->
         <div class="col s9 main">
             <form class="col s12" action="addItem.jsp" method="post">
-                <input type="hidden" name="contactNumber" value="${contactNumber}">
                 <div class="row">
                     <div class="radioInline col s4 offset-s3">
                         <font size="5px">Type:</font>
                         <p class="radioP">
-                            <input name="type" type="radio" id="test1" checked />
-                            <label for="test1">Wheat</label>
+                            <input name="type" type="radio" id="test1" value="grain" checked />
+                            <label for="test1">Grain</label>
                         </p>
                         <p class="radioP">
-                            <input name="type" type="radio" id="test2" />
+                            <input name="type" type="radio" id="test2"  value="vegetable" />
                             <label for="test2">Vegetable</label>
                         </p>
                         <p class="radioP">
-                            <input name="type" type="radio" id="test3" />
+                            <input name="type" type="radio" id="test3"  value="fruit"/>
                             <label for="test3">Fruit</label>
                         </p>
                     </div>
@@ -135,14 +134,19 @@ $(document).ready(function() {
                 <sql:param value="${contactNumber}" />
             </sql:update>
 
+            <sql:query var="itemId">
+                SELECT id FROM items ORDER BY id DESC LIMIT 1
+            </sql:query>
+
             
             <c:forEach items="${paramValues.person}" var="p">
-            <sql:update>
-            INSERT INTO notifications(notificationTo, notificationFrom, date) VALUES(?, ?, ?)
-            <sql:param value="${p}" />    
-            <sql:param value="${contactNumber}" />
-            <sql:param value="<%= new java.util.Date() %>" />
-            </sql:update>
+                <sql:update>
+                INSERT INTO notifications(itemId, notificationTo, notificationFrom, date) VALUES(?, ?, ?, ?)
+                <sql:param value="${itemId.rows[0].id}" />
+                <sql:param value="${p}" />    
+                <sql:param value="${contactNumber}" />
+                <sql:param value="<%= new java.util.Date() %>" />
+                </sql:update>
             </c:forEach>
 
 

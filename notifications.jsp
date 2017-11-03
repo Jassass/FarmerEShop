@@ -18,16 +18,15 @@
   }
 </style>
 <body>
-                <sql:query var="items">
+        <sql:query var="items">
 					SELECT id, Name, Description, itemId, notificationFrom, notificationTo FROM items,notifications where id=itemId and ${contactNumber}= notificationTo  
 				</sql:query>
 
           <sql:update>
-
             UPDATE notifications
             SET status='1'
             WHERE ${contactNumber}=notificationTo    
-            </sql:update>
+          </sql:update>
             
 
 	  		<!-- cards -->
