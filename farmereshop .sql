@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2017 at 01:12 PM
+-- Generation Time: Nov 04, 2017 at 11:19 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -27,6 +27,23 @@ USE `farmereshop`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE IF NOT EXISTS `cart` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` varchar(10) NOT NULL,
+  `itemId` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`),
+  KEY `itemId` (`itemId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `items`
 --
 
@@ -42,23 +59,17 @@ CREATE TABLE IF NOT EXISTS `items` (
   `farmer` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `farmer` (`farmer`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `items`
 --
 
 INSERT INTO `items` (`id`, `Name`, `Type`, `Quantity`, `PersonalRate`, `MarketRate`, `Description`, `ValidUpto`, `farmer`) VALUES
-(1, 'mango', 'on', 8, 800, 600, 'I am the king.', '2024-12-31', '9871169186'),
-(2, 'man', 'on', 45, 900000, 80000, 'I am sexy.', '2017-11-02', '9871169186'),
-(3, 'Apple', 'on', 5, 80, 40, 'I am Red, I am from Kashmir', '2017-11-20', '9871169186'),
-(4, 'Onion', 'on', 7, 120, 100, 'I am pink, i water your eyes', '2017-11-28', '9871169186'),
-(5, 'Potato', 'on', 20, 20, 10, 'I am ssta', '2017-11-28', '9871169186'),
-(6, 'pomegranate', 'on', 4, 120, 80, 'I am swaggy dude.', '2017-11-30', '6000000000'),
-(7, 'Carrot', 'on', 48, 65, 78, 'Hey, I am bloody red.', '2017-11-20', '8000000000'),
-(8, 'tomato', 'on', 18, 68, 53, 'Red shiny.', '2017-11-30', '7000000000'),
-(9, 'New item ', 'vegetable', 500, 2000, 1000, 'I am somewhat new', '2017-11-06', '9467918415'),
-(10, 'New item ', 'vegetable', 500, 2000, 1000, 'I am somewhat new', '2017-11-06', '9467918415');
+(11, 'Potato', 'vegetable', 3, 20, 10, 'I am most common Vegetable', '2017-11-20', '9467918415'),
+(12, 'Grapes', 'grain', 5, 50, 20, 'I am juicy', '2017-11-19', '9467918415'),
+(13, 'Tomato', 'vegetable', 60, 50, 30, 'I am red, Use me Everywhere', '2017-11-28', '9467918415'),
+(14, 'Apple', 'grain', 24, 150, 70, 'I am red, i belong to kashmir', '2017-11-12', '9467918415');
 
 -- --------------------------------------------------------
 
@@ -83,7 +94,15 @@ CREATE TABLE IF NOT EXISTS `notifications` (
 --
 
 INSERT INTO `notifications` (`itemId`, `notificationTo`, `notificationFrom`, `date`, `status`, `cartId`) VALUES
-(6, '6000000000', '1000000000', '2017-11-03', 0, 2);
+(11, '1000000000', '9467918415', '2017-11-03', 1, NULL),
+(11, '6000000000', '9467918415', '2017-11-03', 0, NULL),
+(11, '7000000000', '9467918415', '2017-11-03', 0, NULL),
+(11, '8000000000', '9467918415', '2017-11-03', 0, NULL),
+(12, '1000000000', '9467918415', '2017-11-03', 1, NULL),
+(12, '8000000000', '9467918415', '2017-11-03', 0, NULL),
+(13, '6000000000', '9467918415', '2017-11-03', 0, NULL),
+(13, '7000000000', '9467918415', '2017-11-03', 0, NULL),
+(14, '1000000000', '9467918415', '2017-11-03', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -119,6 +138,13 @@ INSERT INTO `users` (`contactNumber`, `password`, `fName`, `lName`, `location`, 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`contactNumber`),
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`itemId`) REFERENCES `items` (`id`);
 
 --
 -- Constraints for table `items`
