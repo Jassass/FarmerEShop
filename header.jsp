@@ -2,7 +2,7 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <sql:setDataSource scope="application" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/farmereshop" user="root" password="" />
-<c:if test="${contactNumber == ''}">
+<c:if test="${contactNumber == null || contactNumber == ''}">
 	<jsp:forward page="index.jsp"></jsp:forward>
 </c:if>
 <!DOCTYPE html>
@@ -16,11 +16,6 @@
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 </head>
 <body>
-	<div id="google_translate_element"></div><script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,hi'}, 'google_translate_element');
-}
-</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	<sql:query var="userInfo">
 		Select * from users where contactNumber = ?
 		<sql:param value="${contactNumber}" />
@@ -36,6 +31,15 @@ function googleTranslateElementInit() {
 		<input type="hidden" name="contactNumber" value="${contactNumber}">
 	</form>
 	<!-- Main Header -->
+	<div class="row">
+		<div class="col s1 offset-s10">
+				<div id="google_translate_element"></div><script type="text/javascript">
+					function googleTranslateElementInit() {
+					  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,hi', layout: google.translate.TranslateElement.FloatPosition.TOP_RIGHT}, 'google_translate_element');
+					}
+					</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		</div>
+	</div>
 	<nav>
 	    <div class="nav-wrapper light-green accent-3">
 	      <a href="#!" class="brand-logo center">Farmers E-Shop</a>
