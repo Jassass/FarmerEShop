@@ -13,8 +13,8 @@
     background-image: url("images/backdrop.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: center; 
+    background-attachment: fixed;
+    background-position: center; 
   }
 </style>
 <body>
@@ -32,7 +32,7 @@
 <sql:query var="notifications">
   SELECT notifications.itemId, items.name, users.fname, users.contactNumber, notifications.date, cart.ID, cart.quantity FROM notifications,items,users, cart WHERE notifications.notificationTo=${contactNumber} and notifications.itemId=items.id and users.contactNumber=notifications.notificationFrom and notifications.cartId = cart.ID and available=1;
 </sql:query>
-
+    
   <c:forEach items="${notifications.rows}" var="notification" varStatus="loop">
 				<c:if test="${loop.index % 2 == 1}">
 					<div class="row">
@@ -64,6 +64,31 @@
   SELECT id, Name, Description, itemId, notificationFrom, notificationTo FROM items,notifications where id=itemId and ${contactNumber}= notificationTo and available=1  
 </sql:query>
 
+<div id = "main" />
+<form id="addItemForm" action="addToCart.jsp" method="post">
+      <div id="addToCart" class="modal">
+        <div class="modal-content">
+          <h4>Enter the Quantity</h4>
+          <input type="hidden" name="cartItem"/>
+          <input name="quantity" type="number" />
+          </form>
+        </div>
+        <div class="modal-footer">
+        <button class="btn waves-effect waves-light" type="submit" name="addItemButton" value="true" onclick="addItem()">Add to Cart</button>
+        </div>
+      </div>
+</form>
+
+<div class="fixed-action-btn">
+  <a href="#main" class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="Back to Top">
+    <i class="large material-icons">arrow_upward</i>
+  </a>
+  <ul>
+     <li><a href="cart.jsp" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Add to Cart"><i class="material-icons">shopping_basket</i></a></li>
+    <li><a href="myCart.jsp" class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="My Cart"><i class="material-icons">shopping_cart</i></a></li>
+  </ul>
+</div>
+      
 <!--card-->
 <div class="col s9">                
 <c:forEach items="${items.rows}" var="item">
@@ -73,6 +98,7 @@
               <div class="card-image">
                 <img src="images/sample-1.jpg">
                 <span class="card-title"><strong>${item.name}</strong></span>
+                <a id="${item.id}" class="btn-floating halfway-fab waves-effect waves-light red" onclick="add(this.id)"><i class="material-icons">add_shopping_cart</i></a>
               </div>
               <div class="card-stacked">
                 <div class="card-content">
@@ -80,6 +106,9 @@
                 </div>
                 <div class="card-action">
                   <a href="#"><b>From:</b> ${item.notificationFrom}</a>
+                </div>
+                <div class="card-action">
+                  <a href="prductInfo.jsp?id=${item.id}">More Info</a>
                 </div>
               </div>
             </div>   
