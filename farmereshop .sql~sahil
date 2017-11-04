@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD:farmereshop.sql
 -- Generation Time: Nov 04, 2017 at 08:39 AM
+=======
+-- Generation Time: Nov 04, 2017 at 11:19 AM
+>>>>>>> sahil:farmereshop .sql
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -39,6 +43,23 @@ CREATE TABLE `cart` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE IF NOT EXISTS `cart` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` varchar(10) NOT NULL,
+  `itemId` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`),
+  KEY `itemId` (`itemId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `items`
 --
 
@@ -51,8 +72,15 @@ CREATE TABLE `items` (
   `MarketRate` int(11) NOT NULL,
   `Description` varchar(500) NOT NULL,
   `ValidUpto` date NOT NULL,
+<<<<<<< HEAD:farmereshop.sql
   `farmer` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+=======
+  `farmer` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `farmer` (`farmer`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+>>>>>>> sahil:farmereshop .sql
 
 --
 -- Dumping data for table `items`
