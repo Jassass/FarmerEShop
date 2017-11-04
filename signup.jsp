@@ -130,7 +130,7 @@ function googleTranslateElementInit() {
 			</c:when>
 			<c:otherwise>
 				<script type="text/javascript">
-					Materialize.toast('Error SigingUp... Try Again', 1000)
+					Materialize.toast('${error}', 1000)
 				</script>
 			</c:otherwise>
 		</c:choose>

@@ -32,8 +32,7 @@
 	  	</div>
 <!-- Edit button for editing profile  -->
 	  	<div style="color:white; ">
-        Edit Profile
-        <a href="editProfile.jsp" class="btn-floating btn-large red">
+        <a href="editProfile.jsp" class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="Edit Profile">
          <i class="large material-icons">mode_edit</i>
         </a>
         </div>

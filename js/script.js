@@ -21,7 +21,9 @@ $('.datepicker').pickadate({
 });
 
 $(document).ready(function(){ 
-$('.modal').modal();
+$('.modal').modal({
+    complete: function() { $('[name="quantity"]').val(null); }
+});
 });
 
 var page = document.location.pathname

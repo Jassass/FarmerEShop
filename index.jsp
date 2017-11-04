@@ -89,7 +89,7 @@ function googleTranslateElementInit() {
 			    </c:when>
 			    <c:otherwise>
 					<script type="text/javascript">
-						Materialize.toast('Invalid Number or Password... Try Again', 2000)
+						Materialize.toast('Invalid Number or Password. Try Again', 2000)
 					</script>	    	
 				</c:otherwise>
 			</c:choose>

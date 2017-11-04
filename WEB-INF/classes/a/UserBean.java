@@ -94,10 +94,6 @@ public class UserBean implements Serializable {
 		Connection conn = null;
 		Statement stmt = null;
 
-		if(this.contactNumber == null|| this.password == null|| this.fName == null|| this.lName == null|| this.location == null|| this.city == null|| this.state == null|| this.type == null){
-			return "Invalid Input";
-		}
-
 		try {
 			Class.forName(this.JDBC_DRIVER);
 
@@ -146,10 +142,6 @@ public class UserBean implements Serializable {
 		Connection conn = null;
 		Statement stmt = null;
 
-		if(this.contactNumber == null|| this.password == null|| this.fName == null|| this.lName == null|| this.location == null|| this.city == null|| this.state == null|| this.type == null){
-			return "Invalid Input";
-		}
-
 		try {
 			Class.forName(this.JDBC_DRIVER);
 
@@ -164,8 +156,8 @@ public class UserBean implements Serializable {
 									+ "lName='" +this.lName + "',"
 									+ "location='" +this.location + "',"
 									+ "city='" +this.city + "'," 
-								    + "state='" + this.state + "',"
-									+ "type='" + this.type + "' where contactNumber='"+ x +"' ;";
+								    + "state='" + this.state + "'"
+									+ " where contactNumber='"+ x +"' ;";
 
 			stmt.executeUpdate(sql);
 						

@@ -15,10 +15,20 @@
 	    background-attachment: fixed;
 	    background-position: center; 
 	  }
+	  #toast-container {
+		  top: auto !important;
+		  right: auto !important;
+		  bottom: 10%;
+		  left:50%;  
+		}
 	</style>
 </head>
 <body>
-
+		<c:if test="${param.status}">	
+			<script type="text/javascript">
+				Materialize.toast('Notified to Farmer', 1000)
+			</script>
+		</c:if>
 		<c:choose>
 			<c:when test="${userInfo.rows[0].type == 'market'}">
 				<sql:query var="items">

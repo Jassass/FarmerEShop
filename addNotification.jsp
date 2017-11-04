@@ -11,4 +11,6 @@
     UPDATE cart SET status=1 where id=?
     <sql:param value="${param.id}" />
 </sql:update>
-<jsp:forward page="myCart.jsp"></jsp:forward>
+<jsp:forward page="myCart.jsp">
+	<jsp:param name="status" value="true" />
+</jsp:forward>

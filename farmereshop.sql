@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2017 at 11:19 AM
+-- Generation Time: Nov 04, 2017 at 03:31 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -39,7 +39,15 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
   KEY `itemId` (`itemId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user`, `itemId`, `quantity`, `status`) VALUES
+(1, '1000000000', 14, 1, 0),
+(4, '8000000000', 11, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -57,19 +65,24 @@ CREATE TABLE IF NOT EXISTS `items` (
   `Description` varchar(500) NOT NULL,
   `ValidUpto` date NOT NULL,
   `farmer` varchar(10) NOT NULL,
+  `available` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `farmer` (`farmer`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `Name`, `Type`, `Quantity`, `PersonalRate`, `MarketRate`, `Description`, `ValidUpto`, `farmer`) VALUES
-(11, 'Potato', 'vegetable', 3, 20, 10, 'I am most common Vegetable', '2017-11-20', '9467918415'),
-(12, 'Grapes', 'grain', 5, 50, 20, 'I am juicy', '2017-11-19', '9467918415'),
-(13, 'Tomato', 'vegetable', 60, 50, 30, 'I am red, Use me Everywhere', '2017-11-28', '9467918415'),
-(14, 'Apple', 'grain', 24, 150, 70, 'I am red, i belong to kashmir', '2017-11-12', '9467918415');
+INSERT INTO `items` (`id`, `Name`, `Type`, `Quantity`, `PersonalRate`, `MarketRate`, `Description`, `ValidUpto`, `farmer`, `available`) VALUES
+(11, 'Potato', 'vegetable', 3, 20, 10, 'I am most common Vegetable', '2017-11-20', '9467918415', 1),
+(12, 'Grapes', 'grain', 5, 50, 20, 'I am juicy', '2017-11-19', '9467918415', 1),
+(13, 'Tomato', 'vegetable', 60, 50, 30, 'I am red, Use me Everywhere', '2017-11-28', '9467918415', 1),
+(14, 'Apple', 'grain', 24, 150, 70, 'I am red, i belong to kashmir', '2017-11-12', '9467918415', 1),
+(15, 'Apple', 'fruit', 15, 500, 100, 'I am red but from Delhi', '2017-11-04', '1000000000', 0),
+(16, 'Apple', 'fruit', 20, 500, 100, 'I am red but from Delhi', '2017-11-04', '1000000000', 0),
+(17, 'Apple', 'fruit', 30, 100, 50, 'I am red not from kashmir', '2017-11-04', '9871169186', 1),
+(18, 'Grass Powder', 'vegetable', 30, 20, 10, 'I am Powder dude.... Vegetabe Powder', '2017-11-28', '9871169186', 0);
 
 -- --------------------------------------------------------
 
@@ -83,10 +96,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `notificationFrom` varchar(10) NOT NULL,
   `date` date NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0',
-  `cartId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`itemId`,`notificationTo`,`notificationFrom`),
-  KEY `notificationTo` (`notificationTo`),
-  KEY `notificationFrom` (`notificationFrom`)
+  `cartId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -95,14 +105,16 @@ CREATE TABLE IF NOT EXISTS `notifications` (
 
 INSERT INTO `notifications` (`itemId`, `notificationTo`, `notificationFrom`, `date`, `status`, `cartId`) VALUES
 (11, '1000000000', '9467918415', '2017-11-03', 1, NULL),
-(11, '6000000000', '9467918415', '2017-11-03', 0, NULL),
-(11, '7000000000', '9467918415', '2017-11-03', 0, NULL),
-(11, '8000000000', '9467918415', '2017-11-03', 0, NULL),
+(11, '6000000000', '9467918415', '2017-11-03', 1, NULL),
+(11, '7000000000', '9467918415', '2017-11-03', 1, NULL),
+(11, '8000000000', '9467918415', '2017-11-03', 1, NULL),
+(11, '9467918415', '8000000000', '2017-11-04', 0, 4),
 (12, '1000000000', '9467918415', '2017-11-03', 1, NULL),
-(12, '8000000000', '9467918415', '2017-11-03', 0, NULL),
-(13, '6000000000', '9467918415', '2017-11-03', 0, NULL),
-(13, '7000000000', '9467918415', '2017-11-03', 0, NULL),
-(14, '1000000000', '9467918415', '2017-11-03', 1, NULL);
+(12, '8000000000', '9467918415', '2017-11-03', 1, NULL),
+(13, '6000000000', '9467918415', '2017-11-03', 1, NULL),
+(13, '7000000000', '9467918415', '2017-11-03', 1, NULL),
+(14, '1000000000', '9467918415', '2017-11-03', 1, NULL),
+(18, '8000000000', '9871169186', '2017-11-04', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -127,10 +139,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`contactNumber`, `password`, `fName`, `lName`, `location`, `city`, `state`, `type`) VALUES
-('1000000000', 'Priya', 'Priya', 'Joshi', 'Lajpat Nagar', 'Delhi', 'Delhi', 'market'),
+('1000000000', 'Priya', 'Priya', 'Joshi', 'Lajpat Nagar', 'Delhi', 'Delhi', 'farmer'),
 ('6000000000', 'Vinay', 'Vinay', 'Sharma', 'Karol Bagh', 'Delhi', 'Delhi', 'personal'),
 ('7000000000', 'Gopika', 'Gopika', 'Arora', 'Najafgarh', 'Delhi', 'Delhi', 'personal'),
-('8000000000', 'Rohit', 'Rohit', 'Singh', 'civil lines', 'Delhi', 'Delhi', 'market'),
+('8000000000', 'Rohit', 'Rohi', 'Sing', 'civil lines', 'Delhi', 'Delhi', 'market'),
 ('9000000000', 'Pooja', 'Pooja', 'Kharb', 'Najafgarh', 'Delhi', 'Delhi', 'farmer'),
 ('9467918415', 'Sahil', 'Sahil', ' Nishal', 'Sector 6', 'Jhajjar', 'Haryana', 'farmer'),
 ('9871169186', 'Jassa', 'Jassa', 'Singh', 'oiwala', 'Dehradun', 'Uttarakhand', 'farmer');
@@ -158,8 +170,8 @@ ALTER TABLE `items`
 ALTER TABLE `notifications`
   ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`itemId`) REFERENCES `items` (`id`),
   ADD CONSTRAINT `notifications_ibfk_2` FOREIGN KEY (`notificationTo`) REFERENCES `users` (`contactNumber`),
-  ADD CONSTRAINT `notifications_ibfk_3` FOREIGN KEY (`notificationFrom`) REFERENCES `users` (`contactNumber`),
-  ADD CONSTRAINT `notifications_ibfk_4` FOREIGN KEY (`itemId`) REFERENCES `items` (`id`);
+  ADD CONSTRAINT `notifications_ibfk_3` FOREIGN KEY (`notificationFrom`) REFERENCES `users` (`contactNumber`);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

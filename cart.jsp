@@ -29,6 +29,7 @@
 				</div>
 				<div class="modal-footer">
 				<button class="btn waves-effect waves-light" type="submit" name="addItemButton" value="true" onclick="addItem()">Add to Cart</button>
+				<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 				</div>
 			</div>
 		</form>

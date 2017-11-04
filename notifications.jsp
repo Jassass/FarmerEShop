@@ -16,8 +16,20 @@
     background-attachment: fixed;
     background-position: center; 
   }
+  #toast-container {
+      top: auto !important;
+      right: auto !important;
+      bottom: 10%;
+      left:50%;  
+  }
 </style>
 <body>
+
+<c:if test="${param.status}"> 
+  <script type="text/javascript">
+    Materialize.toast('Item Sold', 1000)
+  </script>
+</c:if>
 
 <div class="col s8 main">
 <sql:update>
@@ -75,6 +87,7 @@
         </div>
         <div class="modal-footer">
         <button class="btn waves-effect waves-light" type="submit" name="addItemButton" value="true" onclick="addItem()">Add to Cart</button>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
         </div>
       </div>
 </form>

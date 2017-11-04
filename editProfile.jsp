@@ -10,7 +10,22 @@
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
 <style>
-
+*{
+		box-sizing: border-box;
+	}
+	body{
+		background-image: url("images/backdrop.jpg");
+		background-size: cover;
+		background-repeat: no-repeat;
+	    background-attachment: fixed;
+	    background-position: center; 
+	}
+	input{
+		color: black;
+	}
+	label{
+		color: black;
+	}
 #toast-container {
   top: auto !important;
   right: auto !important;
@@ -43,7 +58,8 @@
 					<div class="row">
 						<div class="input-field col s12">
 							<i class="material-icons prefix">verified_user</i> <input
-								name ="confirm" id="confirm" type="text" class="validate" value="${userInfo.rows[0].password}">
+								name ="confirm" id="confirm" type="text" class="validate">
+							<label for="confirm">Confirm Password</label>
 						</div>
 					</div>
 						
@@ -63,24 +79,6 @@
 							<input name="state" id="state" type="text" class="validate" value="${userInfo.rows[0].state}">
 						</div>
 					</div>
-					<div class="row" style="box-sizing: border-box;">
-						<div class="col s3" style="font-size: 30px;">
-							Type:
-						</div>
-						<div class="col s3">
-							<input class="with-gap" name="type" type="radio" id="farmer" value="farmer" checked/>
-							<label for="farmer">Farmer</label>
-						</div>
-						<div class="col s3">
-							<input class="with-gap" name="type" type="radio" id="market" value="market"/>
-							<label for="market">Market Consumer</label>
-						</div>
-						<div class="col s3">
-							<input class="with-gap" name="type" type="radio" id="personal" value="personal"/>
-							<label for="personal">Personal Consumer</label>
-						</div>
-					</div>
-
 
 					<div style='text-align: center;'>
 						<button class="btn waves-effect waves-light" type="submit"

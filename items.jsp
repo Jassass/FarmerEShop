@@ -16,6 +16,9 @@
       background-attachment: fixed;
       background-position: center; 
   }
+  .right{
+    text-align: right;
+  }
 </style>
 <body>
 
@@ -44,10 +47,12 @@
                 </div>
                 <div class="card-action">
                   <b>Quantity left:</b> ${item.quantity}
-                  <b>Delete Item:</b>
-                <a href="delete.jsp?id=${item.id}" class="btn-floating btn-large red">
-         <i class="large material-icons">delete_forever</i>
-        </a>
+                  <span class="right">
+                    <b>Delete Item:</b>
+                    <a href="delete.jsp?id=${item.id}" class="btn-floating btn-large red">
+                     <i class="large material-icons">delete_forever</i>
+                    </a>
+                  </span>
                 </div>
               </div>
             </div>   

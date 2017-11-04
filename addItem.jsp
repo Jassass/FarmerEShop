@@ -87,12 +87,11 @@ $(document).ready(function() {
                         <input type="text" class="datepicker" name="validUpto" id="validUpto">
                         <label for="validUpto">Valid Upto</label>
                     </div>
-                </div>
-                <!-- cards -->
+                </div>  
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">date_range</i>
-                        <select multiple>
+                        <select name = "location" multiple>
                             <option value="" disabled selected>Choose your option</option>
                             <c:forEach items="${sellto.rows}" var="locations">
                                 <option value="${locations.location}">${locations.location}</option>
@@ -149,8 +148,25 @@ $(document).ready(function() {
                 </sql:update>
             </c:forEach>
 
-
+            <c:forEach items="${paramValues.location}" var="l">
+                <sql:query var="notifyPersons">
+                    Select contactNumber from users where location=?
+                    <sql:param value="${l}" />
+                </sql:query>
+                <c:forEach items="${notifyPersons.rows}" var="notifyPerson">
+                    <sql:update>
+                        INSERT INTO notifications(itemId, notificationTo, notificationFrom, date) VALUES(?, ?, ?, ?)
+                        <sql:param value="${itemId.rows[0].id}" />
+                        <sql:param value="${notifyPerson.contactNumber}" />    
+                        <sql:param value="${contactNumber}" />
+                        <sql:param value="<%= new java.util.Date() %>" />
+                    </sql:update>
+                </c:forEach>
+            </c:forEach>
         
+            <script type="text/javascript">
+                Materialize.toast('Item Added Successfully', 1000)
+            </script>
         </c:if>
     </body>
     <script type="text/javascript" src="js/script.js"></script>

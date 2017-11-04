@@ -8,6 +8,7 @@
 	  <sql:param value="${param.quantity}" />
 	  <sql:param value="${param.itemId}" />  
 	</sql:update>
+	<c:set var="s" value="true" />
 </c:if>
 <sql:update>
     delete from cart where id=?
@@ -17,4 +18,6 @@
     delete from notifications where cartId=?
     <sql:param value="${param.cartId}" />
 </sql:update>
-<jsp:forward page="notifications.jsp"></jsp:forward>
+<jsp:forward page="notifications.jsp">
+	<jsp:param name="status" value="${s}" />
+</jsp:forward>
