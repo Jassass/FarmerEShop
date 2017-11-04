@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2017 at 01:12 PM
+-- Generation Time: Nov 04, 2017 at 08:39 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -21,8 +21,20 @@ SET time_zone = "+00:00";
 --
 -- Database: `farmereshop`
 --
-CREATE DATABASE IF NOT EXISTS `farmereshop` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `farmereshop`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `user` varchar(10) NOT NULL,
+  `itemId` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -30,8 +42,8 @@ USE `farmereshop`;
 -- Table structure for table `items`
 --
 
-CREATE TABLE IF NOT EXISTS `items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Type` varchar(10) NOT NULL,
   `Quantity` int(11) NOT NULL,
@@ -39,26 +51,18 @@ CREATE TABLE IF NOT EXISTS `items` (
   `MarketRate` int(11) NOT NULL,
   `Description` varchar(500) NOT NULL,
   `ValidUpto` date NOT NULL,
-  `farmer` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `farmer` (`farmer`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `farmer` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `items`
 --
 
 INSERT INTO `items` (`id`, `Name`, `Type`, `Quantity`, `PersonalRate`, `MarketRate`, `Description`, `ValidUpto`, `farmer`) VALUES
-(1, 'mango', 'on', 8, 800, 600, 'I am the king.', '2024-12-31', '9871169186'),
-(2, 'man', 'on', 45, 900000, 80000, 'I am sexy.', '2017-11-02', '9871169186'),
-(3, 'Apple', 'on', 5, 80, 40, 'I am Red, I am from Kashmir', '2017-11-20', '9871169186'),
-(4, 'Onion', 'on', 7, 120, 100, 'I am pink, i water your eyes', '2017-11-28', '9871169186'),
-(5, 'Potato', 'on', 20, 20, 10, 'I am ssta', '2017-11-28', '9871169186'),
-(6, 'pomegranate', 'on', 4, 120, 80, 'I am swaggy dude.', '2017-11-30', '6000000000'),
-(7, 'Carrot', 'on', 48, 65, 78, 'Hey, I am bloody red.', '2017-11-20', '8000000000'),
-(8, 'tomato', 'on', 18, 68, 53, 'Red shiny.', '2017-11-30', '7000000000'),
-(9, 'New item ', 'vegetable', 500, 2000, 1000, 'I am somewhat new', '2017-11-06', '9467918415'),
-(10, 'New item ', 'vegetable', 500, 2000, 1000, 'I am somewhat new', '2017-11-06', '9467918415');
+(11, 'Potato', 'vegetable', 3, 20, 10, 'I am most common Vegetable', '2017-11-20', '9467918415'),
+(12, 'Grapes', 'grain', 5, 50, 20, 'I am juicy', '2017-11-19', '9467918415'),
+(13, 'Tomato', 'vegetable', 60, 50, 30, 'I am red, Use me Everywhere', '2017-11-28', '9467918415'),
+(14, 'Apple', 'grain', 24, 150, 70, 'I am red, i belong to kashmir', '2017-11-12', '9467918415');
 
 -- --------------------------------------------------------
 
@@ -66,16 +70,13 @@ INSERT INTO `items` (`id`, `Name`, `Type`, `Quantity`, `PersonalRate`, `MarketRa
 -- Table structure for table `notifications`
 --
 
-CREATE TABLE IF NOT EXISTS `notifications` (
+CREATE TABLE `notifications` (
   `itemId` int(11) NOT NULL,
   `notificationTo` varchar(10) NOT NULL,
   `notificationFrom` varchar(10) NOT NULL,
   `date` date NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0',
-  `cartId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`itemId`,`notificationTo`,`notificationFrom`),
-  KEY `notificationTo` (`notificationTo`),
-  KEY `notificationFrom` (`notificationFrom`)
+  `cartId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -83,7 +84,15 @@ CREATE TABLE IF NOT EXISTS `notifications` (
 --
 
 INSERT INTO `notifications` (`itemId`, `notificationTo`, `notificationFrom`, `date`, `status`, `cartId`) VALUES
-(6, '6000000000', '1000000000', '2017-11-03', 0, 2);
+(11, '1000000000', '9467918415', '2017-11-03', 1, NULL),
+(11, '6000000000', '9467918415', '2017-11-03', 0, NULL),
+(11, '7000000000', '9467918415', '2017-11-03', 0, NULL),
+(11, '8000000000', '9467918415', '2017-11-03', 0, NULL),
+(12, '1000000000', '9467918415', '2017-11-03', 1, NULL),
+(12, '8000000000', '9467918415', '2017-11-03', 0, NULL),
+(13, '6000000000', '9467918415', '2017-11-03', 0, NULL),
+(13, '7000000000', '9467918415', '2017-11-03', 0, NULL),
+(14, '1000000000', '9467918415', '2017-11-03', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -91,7 +100,7 @@ INSERT INTO `notifications` (`itemId`, `notificationTo`, `notificationFrom`, `da
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `contactNumber` varchar(10) NOT NULL,
   `password` varchar(20) NOT NULL,
   `fName` varchar(30) NOT NULL,
@@ -99,8 +108,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `location` varchar(100) NOT NULL,
   `city` varchar(50) NOT NULL,
   `state` varchar(50) NOT NULL,
-  `type` varchar(10) NOT NULL,
-  PRIMARY KEY (`contactNumber`)
+  `type` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -117,8 +125,64 @@ INSERT INTO `users` (`contactNumber`, `password`, `fName`, `lName`, `location`, 
 ('9871169186', 'Jassa', 'Jassa', 'Singh', 'oiwala', 'Dehradun', 'Uttarakhand', 'farmer');
 
 --
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user` (`user`),
+  ADD KEY `itemId` (`itemId`);
+
+--
+-- Indexes for table `items`
+--
+ALTER TABLE `items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `farmer` (`farmer`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`itemId`,`notificationTo`,`notificationFrom`),
+  ADD KEY `notificationTo` (`notificationTo`),
+  ADD KEY `notificationFrom` (`notificationFrom`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`contactNumber`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `items`
+--
+ALTER TABLE `items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`contactNumber`),
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`itemId`) REFERENCES `items` (`id`);
 
 --
 -- Constraints for table `items`

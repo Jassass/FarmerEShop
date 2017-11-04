@@ -140,6 +140,59 @@ public class UserBean implements Serializable {
 		return error;
 
 	}
+	public String updateProfile(String x) {
+
+		String error = "";
+		Connection conn = null;
+		Statement stmt = null;
+
+		if(this.contactNumber == null|| this.password == null|| this.fName == null|| this.lName == null|| this.location == null|| this.city == null|| this.state == null|| this.type == null){
+			return "Invalid Input";
+		}
+
+		try {
+			Class.forName(this.JDBC_DRIVER);
+
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+			stmt = conn.createStatement();
+			String sql;
+
+			sql = "Update users set contactNumber='" +this.contactNumber + "',"
+									+ "password='" +this.password + "',"
+									+ "fName='" +this.fName + "',"
+									+ "lName='" +this.lName + "',"
+									+ "location='" +this.location + "',"
+									+ "city='" +this.city + "'," 
+								    + "state='" + this.state + "',"
+									+ "type='" + this.type + "' where contactNumber='"+ x +"' ;";
+
+			stmt.executeUpdate(sql);
+						
+		} catch (SQLException se) {
+			error = se.toString();
+			se.printStackTrace();
+		} catch (Exception e) {
+			error = e.toString();
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+
+		return error;
+
+	}
+
 
 public String verifyUser() {
 

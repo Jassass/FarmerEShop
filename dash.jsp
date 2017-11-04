@@ -31,6 +31,13 @@
 	          </c:forEach>
       		</table>
 	  	</div>
+<!-- Edit button for editing profile  -->
+	  	<div style="color:white; ">
+        Edit Profile
+        <a href="editProfile.jsp" class="btn-floating btn-large red">
+         <i class="large material-icons">mode_edit</i>
+        </a>
+        </div>
   	
 	</div>
 

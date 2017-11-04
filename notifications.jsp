@@ -30,7 +30,7 @@
 <c:choose>
 <c:when test="${userInfo.rows[0].type == 'farmer'}">
 <sql:query var="notifications">
-  SELECT notifications.itemId, items.name, users.fname, users.contactNumber, notifications.date, cart.ID, cart.quantity FROM notifications,items,users, cart WHERE notifications.notificationTo=${contactNumber} and notifications.itemId=items.id and users.contactNumber=notifications.notificationFrom and notifications.cartId = cart.ID;
+  SELECT notifications.itemId, items.name, users.fname, users.contactNumber, notifications.date, cart.ID, cart.quantity FROM notifications,items,users, cart WHERE notifications.notificationTo=${contactNumber} and notifications.itemId=items.id and users.contactNumber=notifications.notificationFrom and notifications.cartId = cart.ID and available=1;
 </sql:query>
 
   <c:forEach items="${notifications.rows}" var="notification" varStatus="loop">
@@ -61,7 +61,7 @@
 </c:when>
 <c:otherwise>
 <sql:query var="items">
-  SELECT id, Name, Description, itemId, notificationFrom, notificationTo FROM items,notifications where id=itemId and ${contactNumber}= notificationTo  
+  SELECT id, Name, Description, itemId, notificationFrom, notificationTo FROM items,notifications where id=itemId and ${contactNumber}= notificationTo and available=1  
 </sql:query>
 
 <!--card-->

@@ -59,7 +59,7 @@ $('.modal').modal();
 	  			</c:if>
 			  <!--database-->
 				<sql:query var="items">
-					SELECT id, Name, Description FROM items where name like '%${likeParam}%'
+					SELECT id, Name, Description FROM items where name like '%${likeParam}%' and available=1
 				</sql:query>
 			<div id="cards">
 	  		<!-- cards -->

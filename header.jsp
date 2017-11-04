@@ -55,6 +55,7 @@ function googleTranslateElementInit() {
 			    <c:choose>
 			    	<c:when test="${userInfo.rows[0].type == 'farmer'}">
 			    		<li id="addItem"><a href="addItem.jsp" class="waves-effect">Add Item</a></li>
+			    		<li id="addItem"><a href="items.jsp" class="waves-effect">Items added</a></li>
 			    	</c:when>
 					<c:otherwise>
 						<li id="cart"><a href="cart.jsp" class="waves-effect">Add to Cart</a></li>
