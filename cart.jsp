@@ -17,11 +17,6 @@
 	    background-position: center; 
 	}
 </style>
-<script>
-$(document).ready(function(){	
-$('.modal').modal();
-});
-</script>
 <body>
 
 		<form id="addItemForm" action="addToCart.jsp" method="post">
@@ -38,7 +33,7 @@ $('.modal').modal();
 			</div>
 		</form>
 		<!-- Main body -->
-	  	<div class="col s9 main">
+	  	<div class="col s9 main" id = "main">
 		  	
 		  	<form>
 		  	<div class="row">
@@ -52,6 +47,15 @@ $('.modal').modal();
 					</button>
 		        </div>
 			</div>
+			<div class="fixed-action-btn">
+			    <a href="#main" class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="Back to Top">
+    <i class="large material-icons">arrow_upward</i>
+  </a>
+  <ul>
+     <li><a href="notifications.jsp" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Notifications"><i class="material-icons">notifications</i></a></li>
+    <li><a href="myCart.jsp" class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="My Cart"><i class="material-icons">shopping_cart</i></a></li>
+			    </ul>
+			  </div>
 			</form>
 	  		
 	  			<c:if test="${param.search}">
@@ -66,13 +70,13 @@ $('.modal').modal();
 
 				<c:forEach items="${items.rows}" var="item">
 								 
-					<div class="row col m11">
+					<div class="row col m9">
 						
 						<div class="card horizontal">
 							<div class="card-image">
 								<img src="images/sample-1.jpg">
 								<span class="card-title"><strong>${item.name}</strong></span>
-								<a id="${item.id}" class="btn-floating halfway-fab waves-effect waves-light red" onclick="add(this.id)"><i class="material-icons">add</i></a>
+								<a id="${item.id}" class="btn-floating halfway-fab waves-effect waves-light red" onclick="add(this.id)"><i class="material-icons">add_shopping_cart</i></a>
 							</div>
 							<div class="card-stacked">
 								<div class="card-content">

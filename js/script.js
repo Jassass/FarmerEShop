@@ -20,6 +20,10 @@ $('.datepicker').pickadate({
     closeOnSelect: false // Close upon selecting a date,
 });
 
+$(document).ready(function(){ 
+$('.modal').modal();
+});
+
 var page = document.location.pathname
 page = page.split("/");
 page = page[2].split('.');

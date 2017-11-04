@@ -25,6 +25,9 @@ body{
   bottom: 10%;
   left:42%;  
 }
+input{
+color: white;
+}
 </style>
 </head>
 <body>

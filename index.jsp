@@ -30,6 +30,9 @@
 	  bottom: 10%;
 	  left:38%;  
 	}
+	input{
+		color: black;
+	}
 </style>
 </head>
 <body>
