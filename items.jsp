@@ -1,41 +1,45 @@
 <%@include file="header.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Insert title here</title>
-</head>
-<style>
-  *{
-    box-sizing: border-box;
-  }
-  body{
-    background-image: url("images/backdrop.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+  <!DOCTYPE html>
+  <html>
+
+  <head>
+    <meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert title here</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-image: url("images/backdrop.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
       background-attachment: fixed;
-      background-position: center; 
-  }
-  .right{
-    text-align: right;
-  }
-</style>
-<body>
+      background-position: center;
+    }
+    
+    .right {
+      text-align: right;
+    }
+  </style>
+
+  <body>
 
 
-<div class="col s8 main">
+    <div class="col s8 main">
 
-<!--for all the items farmer has added or check 'farmer' in items table.-->
-<sql:query var="items">
-  SELECT id, Name, Description, Quantity FROM items where farmer='${contactNumber}' and available=1  
-</sql:query>
+      <!--for all the items farmer has added or check 'farmer' in items table.-->
+      <sql:query var="items">
+        SELECT id, Name, Description, Quantity FROM items where farmer='${contactNumber}' and available=1
+      </sql:query>
 
-<!--card-->
-<c:forEach items="${items.rows}" var="item">
-<div class="col m12">                
+      <!--card-->
+      <c:forEach items="${items.rows}" var="item">
+        <div class="col m12">
 
           <div class="row">
-            
+
             <div class="card horizontal">
               <div class="card-image">
                 <img src="images/sample-1.jpg">
@@ -43,7 +47,7 @@
               </div>
               <div class="card-stacked">
                 <div class="card-content">
-                    ${item.description}     
+                  ${item.description}
                 </div>
                 <div class="card-action">
                   <b>Quantity left:</b> ${item.quantity}
@@ -55,18 +59,19 @@
                   </span>
                 </div>
               </div>
-            </div>   
+            </div>
           </div>
-        
-       
+
+
         </div>
-        
 
-        </c:forEach>
-        
 
-</div>
+      </c:forEach>
 
-</body>
-<script type="text/javascript" src="js/script.js"></script>
-</html>
+
+    </div>
+
+  </body>
+  <script type="text/javascript" src="js/script.js"></script>
+
+  </html>

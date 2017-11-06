@@ -21,7 +21,7 @@ public class UserBean implements Serializable {
 	private String contactNumber;
 
 	public UserBean() {
-
+ 
 	}
 
 	public String getfName() {

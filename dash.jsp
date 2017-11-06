@@ -1,44 +1,52 @@
 <%@include file="header.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>DashBoard</title>
-</head>
-<style>
-	*{
-		box-sizing: border-box;
-	}
-	body{
-		background-image: url("images/backdrop.jpg");
-		background-size: cover;
-		background-repeat: no-repeat;
-	    background-attachment: fixed;
-	    background-position: center; 
-	}
-</style>
-<body>
+	<!DOCTYPE html>
+	<html>
+
+	<head>
+		<title>DashBoard</title>
+	</head>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		
+		body {
+			background-image: url("images/backdrop.jpg");
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-position: center;
+		}
+	</style>
+
+	<body>
 
 		<!-- Main body -->
 
-	  	<div class="col s8 main">
-	  		<table class="bordered centered responsive-table" style="margin-top: 10%;">
-	          <c:forEach items="${userInfo.rows[0]}" var = "column">
-	          	<tr>
-	              <th><c:out value="${column.key}" /></th>
-	              <td><c:out value="${column.value}" /></td>
-	          	</tr>
-	          </c:forEach>
-      		</table>
-	  	</div>
-<!-- Edit button for editing profile  -->
-	  	<div style="color:white; ">
-        <a href="editProfile.jsp" class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="Edit Profile">
-         <i class="large material-icons">mode_edit</i>
-        </a>
-        </div>
-  	
-	</div>
+		<div class="col s8 main">
+			<table class="bordered centered responsive-table" style="margin-top: 10%;">
+				<c:forEach items="${userInfo.rows[0]}" var="column">
+					<tr>
+						<th>
+							<c:out value="${column.key}" />
+						</th>
+						<td>
+							<c:out value="${column.value}" />
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+		<!-- Edit button for editing profile  -->
+		<div style="color:white; ">
+			<a href="editProfile.jsp" class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="Edit Profile">
+				<i class="large material-icons">mode_edit</i>
+			</a>
+		</div>
 
-</body>
-<script type="text/javascript" src="js/script.js"></script>
-</html>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="js/script.js"></script>
+
+	</html>
